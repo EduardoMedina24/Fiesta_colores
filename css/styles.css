@@ -1,0 +1,89 @@
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+}
+
+#titulo {
+    margin: 20px;
+    font-size: 2rem;
+}
+
+#pista-de-baile {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.color, .color-opcion {
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    background-color: #6200ea;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+button:hover {
+    background-color: #3700b3;
+}
+
+#selector-colores {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+#colores-disponibles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.color-opcion {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+#lista-votos {
+    margin: 10px auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+    max-width: 300px;
+    text-align: left;
+    border-radius: 5px;
+}
+
+#mensaje-popular {
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0;
+}
+
+#mensaje-popular.visible {
+    opacity: 1;
+}
