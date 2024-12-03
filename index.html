@@ -7,21 +7,31 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <h1 id="titulo">¡Bienvenidos a la Fiesta de Colores! 🎨</h1>
-    
-    <div id="pista-de-baile"></div>
-    <button id="agregar-color" aria-label="Agregar un nuevo color">Agregar Color</button>
-    <button id="reiniciar" aria-label="Reiniciar la pista de baile">Reiniciar</button>
-    <button id="ver-lista-votos" aria-label="Ver los votos de los colores">Ver lista de votos</button>
-    <button id="toggle-sonido">Sonido: Activado</button>
-    <p id="mensaje-popular"></p>
-    <!-- Selector de colores -->
-    <div id="selector-colores" style="display: none;">
-        <h3>Selecciona un color para añadir:</h3>
-        <div id="colores-disponibles"></div>
-        <button id="cerrar-selector">Cerrar</button>
+    <div class="contenedor">
+        <header>
+            <h1 id="titulo">¡Bienvenidos a la Fiesta de Colores! 🎨</h1>
+        </header>
+
+        <main>
+            <div id="pista-de-baile"></div>
+            <button id="agregar-color" aria-label="Agregar un nuevo color">Agregar Color</button>
+            <button id="reiniciar" aria-label="Reiniciar la pista de baile">Reiniciar</button>
+            <button id="ver-lista-votos" aria-label="Ver los votos de los colores">Ver lista de votos</button>
+            <button id="toggle-sonido">Sonido: Activado</button>
+            <p id="mensaje-popular"></p>
+
+            <div id="selector-colores" style="display: none;">
+                <h3>Selecciona un color para añadir:</h3>
+                <div id="colores-disponibles"></div>
+                <button id="cerrar-selector">Cerrar</button>
+            </div>
+            <div id="lista-votos" style="display: none;"></div>
+        </main>
+
+        <footer>
+            <p>Fiesta de Colores &copy; 2024</p>
+        </footer>
     </div>
-    <div id="lista-votos" style="display: none;"></div>
     <script src="/script/script.js"></script>
 </body>
 </html>

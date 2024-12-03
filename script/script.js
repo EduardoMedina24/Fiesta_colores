@@ -1,3 +1,4 @@
+// Variables de referencia
 const titulo = document.getElementById('titulo');
 const pista = document.getElementById('pista-de-baile');
 const agregarColorBtn = document.getElementById('agregar-color');
@@ -10,26 +11,31 @@ const verListaVotosBtn = document.getElementById('ver-lista-votos');
 const listaVotosDiv = document.getElementById('lista-votos');
 const toggleSonidoBtn = document.getElementById('toggle-sonido');
 
-let colores = ['#FF5733', '#33FF57', '#3357FF', '#FFFF33', '#FF33FF'];
+// Variables de estado
+let colores = ['#FF5733', '#33FF57', '#3357FF'];
 let votos = {};
 let timer;
 let sonidoActivo = true;
 
+// Colores predefinidos para agregar
 const coloresPredefinidos = [
     '#FF5733', '#33FF57', '#3357FF', '#FFFF33', '#FF33FF',
     '#123456', '#654321', '#F0A500', '#0AFFF0', '#A500FF'
 ];
 
+// Función para guardar datos en localStorage
 function guardarDatos() {
     localStorage.setItem('colores', JSON.stringify(colores));
     localStorage.setItem('votos', JSON.stringify(votos));
 }
 
+// Función para cargar datos desde localStorage
 function cargarDatos() {
     colores = JSON.parse(localStorage.getItem('colores')) || colores;
     votos = JSON.parse(localStorage.getItem('votos')) || {};
 }
 
+// Función para iniciar la fiesta
 function iniciarFiesta() {
     pista.innerHTML = '';
     colores.forEach(color => {
@@ -40,9 +46,11 @@ function iniciarFiesta() {
         pista.appendChild(colorDiv);
         votos[color] = votos[color] || 0;
     });
-    reiniciarTemporizador();  // Reinicia el temporizador cada vez que se inicia la fiesta.
+    mostrarColorPopular();
+    reiniciarTemporizador();
 }
 
+// Función para mostrar la lista de votos
 function mostrarListaVotos() {
     listaVotosDiv.innerHTML = '';
     const lista = Object.entries(votos)
@@ -57,14 +65,16 @@ function mostrarListaVotos() {
     listaVotosDiv.style.display = 'block';
 }
 
+// Función para seleccionar un color
 function seleccionarColor(color) {
     titulo.style.color = color;
     votos[color]++;
     mostrarColorPopular();
     reproducirSonido();
-    reiniciarTemporizador(); // Reinicia el temporizador cada vez que se selecciona un color.
+    reiniciarTemporizador();
 }
 
+// Función para agregar un nuevo color
 function agregarColor() {
     selectorColores.style.display = 'block';
     coloresDisponibles.innerHTML = '';
@@ -73,25 +83,30 @@ function agregarColor() {
         colorDiv.className = 'color-opcion';
         colorDiv.style.backgroundColor = color;
         colorDiv.addEventListener('click', () => {
-            colores.push(color);
-            iniciarFiesta();
-            cerrarSelector();
+            if (!colores.includes(color)) {
+                colores.push(color);
+                iniciarFiesta();
+                cerrarSelector();
+            }
         });
         coloresDisponibles.appendChild(colorDiv);
     });
 }
 
+// Función para cerrar el selector de colores
 function cerrarSelector() {
     selectorColores.style.display = 'none';
 }
 
+// Función para reiniciar la fiesta
 function reiniciarFiesta() {
-    colores = [];
+    colores = ['#FF5733', '#33FF57', '#3357FF'];
     votos = {};
     titulo.style.color = '#000';
-    iniciarFiesta();  // Vuelve a iniciar la fiesta.
+    iniciarFiesta();
 }
 
+// Función para mostrar el color más popular
 function mostrarColorPopular() {
     const [colorPopular] = Object.entries(votos).sort((a, b) => b[1] - a[1])[0] || [];
     if (colorPopular) {
@@ -106,19 +121,36 @@ function mostrarColorPopular() {
     }
 }
 
+// Función para reproducir un sonido al seleccionar un color
 function reproducirSonido() {
     if (!sonidoActivo) return;
-    const audio = new Audio('sonido.mp3');
+
+    // Lista de archivos de sonido para aleatoriedad
+    const sonidos = [
+    
+        'sounds/bells.mp3',
+        'sounds/church.mp3',
+        'sounds/jingle.mp3'
+    ];
+
+    // Seleccionar un sonido aleatorio
+    const sonidoAleatorio = sonidos[Math.floor(Math.random() * sonidos.length)];
+    
+    // Reproducir el sonido
+    const audio = new Audio(sonidoAleatorio);
     audio.play();
 }
 
+
+// Función para reiniciar el temporizador de inactividad
 function reiniciarTemporizador() {
-    if (timer) clearTimeout(timer);  // Limpiar cualquier temporizador previo.
+    if (timer) clearTimeout(timer);
     timer = setTimeout(() => {
-        reiniciarFiesta();  // Reinicia la fiesta después de 10 segundos de inactividad.
-    }, 10000);  // 10000 milisegundos = 10 segundos.
+        reiniciarFiesta();
+    }, 10000);
 }
 
+// Configurar eventos
 toggleSonidoBtn.addEventListener('click', () => {
     sonidoActivo = !sonidoActivo;
     toggleSonidoBtn.textContent = `Sonido: ${sonidoActivo ? 'Activado' : 'Desactivado'}`;
@@ -129,6 +161,7 @@ cerrarSelectorBtn.addEventListener('click', cerrarSelector);
 reiniciarBtn.addEventListener('click', reiniciarFiesta);
 verListaVotosBtn.addEventListener('click', mostrarListaVotos);
 
+// Inicialización
 window.addEventListener('beforeunload', guardarDatos);
 cargarDatos();
 iniciarFiesta();
