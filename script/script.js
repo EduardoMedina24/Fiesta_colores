@@ -129,7 +129,7 @@ function reproducirSonido() {
     const sonidos = [
     
         'sounds/bells.mp3',
-        'sounds/church.mp3',
+        'sounds/campana.mp3',
         'sounds/jingle.mp3'
     ];
 
