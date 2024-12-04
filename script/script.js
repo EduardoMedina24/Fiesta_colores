@@ -130,7 +130,10 @@ function reproducirSonido() {
     
         'sounds/bells.mp3',
         'sounds/campana.mp3',
-        'sounds/jingle.mp3'
+        'sounds/jingle.mp3',
+        'sounds/ring.mp3',
+        'sounds/tintin.mp3',
+        'sounds/tob.mp3',
     ];
 
     // Seleccionar un sonido aleatorio
